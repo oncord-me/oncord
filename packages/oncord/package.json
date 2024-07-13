@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "OnCord is a simple and intuitive framework built on top of discord.js, designed to simplify your Discord bot development.",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "postinstall": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
