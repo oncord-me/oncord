@@ -1,3 +1,4 @@
 packages/bot
+packages/botJS
 node_modules
 tsconfig.tsbuildinfo

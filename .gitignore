@@ -130,5 +130,6 @@ dist
 .pnp.*
 
 packages/bot
+packages/botJS
 
 start.sh
