@@ -1,0 +1,23 @@
+{
+  "name": "@oncord/client",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "jest"
+  },
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "oncord",
+    "discord",
+    "framework",
+    "discord.js"
+  ],
+  "author": "igorwastaken",
+  "license": "ISC",
+  "description": "Client package plugin for discord.js",
+  "dependencies": {
+    "discord-api-types": "^0.37.92",
+    "discord.js": "^14.15.3"
+  }
+}
