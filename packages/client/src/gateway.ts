@@ -1,9 +1,9 @@
-import { Client, ClientOptions, Collection, CommandInteraction, Interaction, REST, RESTPostAPIChatInputApplicationCommandsJSONBody, Routes } from "discord.js";
+import { ChatInputApplicationCommandData, Client, ClientOptions, Collection, CommandInteraction, Events, Interaction, REST, Routes } from "discord.js";
 import { readdirSync } from "fs";
 import path from "path";
 import { APIApplicationCommand } from 'discord-api-types/v10'
 
-export interface CommandData extends APIApplicationCommand {
+export interface CommandData extends ChatInputApplicationCommandData {
     name: string;
     description: string;
 }
@@ -12,11 +12,17 @@ export type CommandType = {
     data: CommandData;
     execute: (interaction: CommandInteraction) => void;
 }
+export type EventType = {
+    name: string;
+    once?: Boolean;
+    execute: Function;
+}
 
 export class Gateway extends Client {
     public token: string;
     public commands = new Collection<string, CommandType>();
-    public commandData: APIApplicationCommand[] = [];
+    public commandData: ChatInputApplicationCommandData[] = [];
+    private _commandFolder: string = "";
     constructor(token: string, options: ClientOptions) {
         super(options)
 
@@ -29,6 +35,7 @@ export class Gateway extends Client {
     }
 
     handleCommands(folderName: string, fileExtension: string = ".ts") {
+        this._commandFolder = folderName;
         const client = this;
         const foldersPath = path.join(folderName);
         const commandFolders = readdirSync(foldersPath);
@@ -72,7 +79,24 @@ export class Gateway extends Client {
             }
         })
     }
-    
+    handleEvents(folderName: string, fileExtension: string = ".ts") {
+        if (folderName === this._commandFolder) throw new TypeError("Events folder cannot be the same as Commands folder.");
+        const eventsPath = path.join(folderName);
+        const eventFiles = readdirSync(eventsPath).filter(file => file.endsWith(fileExtension));
+
+        (async () => {
+            for (const file of eventFiles) {
+                const filePath = path.join(eventsPath, file);
+                const eventImport = await import(filePath);
+                const event = eventImport.default as EventType;
+                if (event.once) {
+                    this.once(event.name, (...args) => event.execute(...args));
+                } else {
+                    this.on(event.name, (...args) => event.execute(...args));
+                }
+            }
+        })();
+    }
     private _registerCommands() {
         const rest = new REST().setToken(this.token);
 
