@@ -57,7 +57,7 @@ export class Gateway extends Client {
             }
         })()
         this.on("ready", () => this._registerCommands());
-        this.on("interactionCreate", async (interaction: Interaction) => {
+        this.once("interactionCreate", async (interaction: Interaction) => {
             if (!interaction.isChatInputCommand()) return;
 
             const command = this.commands.get(interaction.commandName);

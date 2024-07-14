@@ -12,12 +12,15 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
+    "jest": "^29.7.0",
     "lerna": "^8.1.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
   "dependencies": {
+    "chai": "^5.1.1",
     "discord-api-types": "^0.37.92",
-    "discord.js": "^14.15.3"
+    "discord.js": "^14.15.3",
+    "mocha": "^10.6.0"
   }
 }

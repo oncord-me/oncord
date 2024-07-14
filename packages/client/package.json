@@ -27,5 +27,8 @@
     "discord-api-types": "^0.37.92",
     "discord.js": "^14.15.3"
   },
-  "gitHead": "7a3671b8941be94d6dd194c6e8c9c398075d65fc"
+  "gitHead": "7a3671b8941be94d6dd194c6e8c9c398075d65fc",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
