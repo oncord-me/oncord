@@ -28,7 +28,6 @@
   ],
   "description": "OnCord is a simple and intuitive framework built on top of discord.js, designed to simplify your Discord bot development.",
   "dependencies": {
-    "-": "^0.0.1",
     "animality": "^2.1.4",
     "discord-api-types": "^0.37.92",
     "discord.js": "^14.15.3"
