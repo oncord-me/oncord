@@ -38,7 +38,8 @@ my-bot/
 ```javascript
 const { Gateway } = require('@oncordjs/client')
 
-const client = new Gateway("YOUR_BOT_TOKEN", {
+const client = new Gateway({
+    token: "YOUR_BOT_TOKEN",
     intents: ['Guilds']
 });
 
@@ -67,7 +68,8 @@ module.exports = {
 ```typescript
 import { Gateway } from '@oncordjs/client';
 
-const client = new Gateway("YOUR_BOT_TOKEN", {
+const client = new Gateway({
+    token: "YOUR_BOT_TOKEN",
     intents: ['Guilds']
 });
 
