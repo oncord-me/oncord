@@ -7,6 +7,7 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
+    "build:docs": "typedoc --out docs packages/**/*",
     "clean:build": "lerna exec -- rimraf lib",
     "demo:start:client": "lerna exec --scope cra-universal-demo -- npm start"
   },
@@ -15,6 +16,7 @@
     "jest": "^29.7.0",
     "lerna": "^8.1.6",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.26.4",
     "typescript": "^5.5.3"
   },
   "dependencies": {
