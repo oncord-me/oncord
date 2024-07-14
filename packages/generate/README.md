@@ -7,7 +7,7 @@ A CLI tool to generate new projects using `@oncordjs/client`, inspired by `creat
 You can install the CLI globally using npm:
 
 ```bash
-npm install -g @oncord/generate
+npm install -g @oncordjs/generate
 ```
 
 ## Usage
