@@ -72,6 +72,7 @@ export class Gateway extends Client {
             }
         })
     }
+    
     private _registerCommands() {
         const rest = new REST().setToken(this.token);
 

@@ -1,4 +1,4 @@
-# @oncord/client
+# @oncordjs/client
 
 OnCord is a simple and intuitive framework built on top of discord.js, designed to simplify your Discord bot development.
 
@@ -12,7 +12,7 @@ OnCord is a simple and intuitive framework built on top of discord.js, designed 
 Install the package via npm:
 
 ```sh
-npm install @oncord/client
+npm install @oncordjs/client
 ```
 
 ## Project Structure
@@ -36,7 +36,7 @@ my-bot/
 `my-bot/src/index.js`
 
 ```javascript
-const { Gateway } = require('@oncord/client')
+const { Gateway } = require('@oncordjs/client')
 
 const client = new Gateway("YOUR_BOT_TOKEN", {
     intents: ['Guilds']
@@ -65,7 +65,7 @@ module.exports = {
 `my-bot/src/index.ts`
 
 ```typescript
-import { Gateway } from '@oncord/client';
+import { Gateway } from '@oncordjs/client';
 
 const client = new Gateway("YOUR_BOT_TOKEN", {
     intents: ['Guilds']
@@ -81,7 +81,7 @@ client.login();
 `my-bot/src/commands/util/ping.ts`
 
 ```typescript
-import { CommandType } from '@oncord/client';
+import { CommandType } from '@oncordjs/client';
 import { CommandInteraction } from 'discord.js';
 
 const command: CommandType = {
