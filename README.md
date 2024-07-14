@@ -14,7 +14,7 @@ Contributions are welcome! If you have any questions or want to contribute, you 
 Thank you for using OnCord!
 
 ## Future features (if possible)
-- Easy components (buttons, select menu, modal) creation
-- Message Commands Handler
-- Simple Database
-- Documentation
+- [ ] Easy components (buttons, select menu, modal) creation
+- [ ] Message Commands Handler
+- [ ] Simple Database
+- [ ] Documentation
