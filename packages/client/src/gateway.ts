@@ -27,6 +27,11 @@ export class Gateway extends Client {
         return super.login(this.token);
     }
 
+    handleMessageCommands(folderName: string, fileExtension = ".ts") {
+        console.log("work in progress");
+        // work in progress
+    }
+    
     handleCommands(folderName: string, fileExtension: string = ".ts") {
         this._commandFolder = folderName;
         const client = this;
