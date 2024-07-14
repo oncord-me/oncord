@@ -1,25 +1,33 @@
-import { ChatInputApplicationCommandData, Client, ClientOptions, Collection, CommandInteraction, Events, Interaction, REST, Routes } from "discord.js";
+import { ChatInputApplicationCommandData, Client, ClientOptions, Collection, CommandInteraction, Events, Interaction, Message, PartialMessage, REST, Routes } from "discord.js";
 import { readdirSync } from "fs";
 import path from "path";
-import { EventType, CommandType } from "./types";
+import { EventType, CommandType, MessageCommandType } from "./types";
 import Animality from 'animality';
 import { AnimalityFunctions } from "./util/Animality";
 
+export type GatewayOptions = {
+    prefix: string;
+    token: string;
+}
+
 export class Gateway extends Client {
     public token: string;
+    public prefix: string;
     public commands = new Collection<string, CommandType>();
     public commandData: ChatInputApplicationCommandData[] = [];
+    public messageCommands = new Collection<string, MessageCommandType>();
     private _commandFolder: string = "";
-    
+    private _msgCommandFolder: string = "";
     /**
      * Thanks to @nitcord for providing this.
      */
     public get animality() {
         return new AnimalityFunctions();
     }
-    constructor(token: string, options: ClientOptions) {
+    constructor(options: GatewayOptions & ClientOptions) {
         super(options)
-        this.token = token;
+        this.token = options.token;
+        this.prefix = options.prefix;
     }
 
     async login(): Promise<string> {
@@ -28,10 +36,48 @@ export class Gateway extends Client {
     }
 
     handleMessageCommands(folderName: string, fileExtension = ".ts") {
-        console.log("work in progress");
-        // work in progress
+        const prefix = this.prefix;
+        if(!prefix) throw new Error("Please define \"prefix\" on Gateway constructor.")
+        this._msgCommandFolder = folderName;
+        const client = this;
+        const foldersPath = path.join(folderName);
+        const commandFolders = readdirSync(foldersPath);
+
+        (async () => {
+            for (const folder of commandFolders) {
+                const commandsPath = path.join(foldersPath, folder);
+                const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith(fileExtension));
+                for (const file of commandFiles) {
+                    const filePath = path.join(commandsPath, file);
+                    const commandModule = await import(filePath);
+                    const command = commandModule.default as MessageCommandType;
+                    if ('name' in command && 'execute' in command) {
+                        client.messageCommands.set(command.name, command);
+                    } else {
+                        console.warn(`[WARNING] The command at ${filePath} is missing a required "name" or "execute" property.`);
+                    }
+                }
+            }
+        })();
+        async function commandFun(message: Message<boolean> | PartialMessage) {
+            if (!message.content?.startsWith(prefix) || message.author?.bot) return;
+
+            const args = message.content?.slice(prefix.length).trim().split(/ +/);
+            const command = args.shift()?.toLowerCase() as string;
+
+            if (!client.messageCommands.has(command)) return;
+
+            try {
+                client.messageCommands.get(command)?.execute(message, args, client);
+            } catch (error) {
+                console.error(error);
+                message.reply('There was an error trying to execute that command!');
+            }
+        }
+        this.on("messageCreate", (msg) => commandFun(msg))
+        this.on("messageUpdate", (_oldMsg, newMsg) => commandFun(newMsg))
     }
-    
+
     handleCommands(folderName: string, fileExtension: string = ".ts") {
         this._commandFolder = folderName;
         const client = this;
@@ -49,7 +95,7 @@ export class Gateway extends Client {
                     if ('data' in command && 'execute' in command) {
                         client.commands.set(command.data.name, command);
                     } else {
-                        console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+                        console.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
                     }
                 }
             }

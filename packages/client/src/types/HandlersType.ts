@@ -1,4 +1,4 @@
-import { ChatInputApplicationCommandData, CommandInteraction } from "discord.js";
+import { ChatInputApplicationCommandData, Client, CommandInteraction, Message, PartialMessage } from "discord.js";
 
 export interface CommandData extends ChatInputApplicationCommandData {
     name: string;
@@ -14,4 +14,10 @@ export type EventType = {
     name: string;
     once?: boolean;
     execute: Function;
+}
+
+export type MessageCommandType = {
+    name: string;
+    description?: string;
+    execute: (message: Message<boolean> | PartialMessage, args: string[], client: Client) => void;
 }
