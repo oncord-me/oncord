@@ -1,31 +1,24 @@
 import { ChatInputApplicationCommandData, Client, ClientOptions, Collection, CommandInteraction, Events, Interaction, REST, Routes } from "discord.js";
 import { readdirSync } from "fs";
 import path from "path";
-import { APIApplicationCommand } from 'discord-api-types/v10'
-
-export interface CommandData extends ChatInputApplicationCommandData {
-    name: string;
-    description: string;
-}
-
-export type CommandType = {
-    data: CommandData;
-    execute: (interaction: CommandInteraction) => void;
-}
-export type EventType = {
-    name: string;
-    once?: Boolean;
-    execute: Function;
-}
+import { EventType, CommandType } from "./types";
+import Animality from 'animality';
+import { AnimalityFunctions } from "./util/Animality";
 
 export class Gateway extends Client {
     public token: string;
     public commands = new Collection<string, CommandType>();
     public commandData: ChatInputApplicationCommandData[] = [];
     private _commandFolder: string = "";
+    
+    /**
+     * Thanks to @nitcord for provide this.
+     */
+    public get animality() {
+        return new AnimalityFunctions();
+    }
     constructor(token: string, options: ClientOptions) {
         super(options)
-
         this.token = token;
     }
 
