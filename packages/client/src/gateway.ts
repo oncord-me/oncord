@@ -12,7 +12,7 @@ export class Gateway extends Client {
     private _commandFolder: string = "";
     
     /**
-     * Thanks to @nitcord for provide this.
+     * Thanks to @nitcord for providing this.
      */
     public get animality() {
         return new AnimalityFunctions();
