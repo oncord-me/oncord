@@ -13,6 +13,6 @@ Thank you for using OnCord!
 
 ## Roadmap
 - [ ] Easy components (buttons, select menu, modal) creation
-- [ ] Message Commands Handler
+- [x] Message Commands Handler
 - [ ] Simple Database
 - [ ] Documentation
