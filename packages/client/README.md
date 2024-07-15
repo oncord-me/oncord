@@ -69,7 +69,7 @@ const client = new Gateway({
 
 client.handleCommands(__dirname+"/commands", ".js")
 
-client.login()
+client.login(process.env.TOKEN)
 ```
 
 ### Command Example
@@ -99,7 +99,7 @@ const client = new Gateway({
 
 client.handleCommands(__dirname + "/commands", ".ts"); // <Gateway>.handleCommands(folderPath, fileExtension);
 
-client.login();
+client.login(process.env.TOKEN);
 ```
 
 ### Command Example
@@ -129,7 +129,7 @@ Contributions are welcome! If you have any questions or want to contribute, you 
 
 - [GitHub Repository](https://github.com/igorwastaken/oncord)
 
-Thank you for using OnCord!
+Thank you for using OnCord! We still have a lot more to add, so stay tuned for the upcoming updates!
 
 ## Additional Notes
 - **Installation Instructions**: Added installation instructions for npm.
