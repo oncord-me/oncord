@@ -1,7 +1,7 @@
 # oncord
 OnCord is a simple and intuitive framework built on top of Discord.js, designed to simplify your Discord bot development.
 
-## Check our project
+## Our Project
 - [Client Package](https://github.com/igorwastaken/oncord/tree/main/packages/client)
 - More coming soon 👀
 
