@@ -2,7 +2,6 @@ import { ChatInputApplicationCommandData, Client, ClientOptions, Collection, Com
 import { readdirSync } from "fs";
 import path from "path";
 import { EventType, CommandType, MessageCommandType } from "./types";
-import Animality from 'animality';
 import { AnimalityFunctions } from "./util/Animality";
 
 export type GatewayOptions = {
@@ -34,7 +33,13 @@ export class Gateway extends Client {
         if (!this.token) throw new Error("Please provide a Discord bot token.");
         return super.login(this.token);
     }
-
+    /**
+     * I think this is useless, the only change is the function name 🧠
+     */
+    async connect(): Promise<string> {
+        if (!this.token) throw new Error("Please provide a Dizcord bot token.");
+        return super.login(this.token)
+    }
     handleMessageCommands(folderName: string, fileExtension = ".ts") {
         const prefix = this.prefix;
         if(!prefix) throw new Error("Please define \"prefix\" on Gateway constructor.")
