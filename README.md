@@ -13,5 +13,6 @@ Thank you for using OnCord!
 
 ## Roadmap
 - Easy components (buttons, select menu, modal) creation
-- Message Commands Handler
+- Simple voice channel connection
+  - Add music bot features (like, YouTube streaming)
 - Simple Database
