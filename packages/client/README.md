@@ -69,7 +69,7 @@ const client = new Gateway({
 
 client.handleCommands(__dirname+"/commands", ".js")
 
-client.login(process.env.TOKEN)
+client.login()
 ```
 
 ### Command Example
@@ -99,7 +99,7 @@ const client = new Gateway({
 
 client.handleCommands(__dirname + "/commands", ".ts"); // <Gateway>.handleCommands(folderPath, fileExtension);
 
-client.login(process.env.TOKEN);
+client.login();
 ```
 
 ### Command Example
