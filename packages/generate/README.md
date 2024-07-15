@@ -144,11 +144,11 @@ To work on the CLI tool itself, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/create-oncord-app.git
+    git clone https://github.com/oncord-me/oncord.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd create-oncord-app
+    cd oncord
     ```
 3. Install dependencies:
     ```bash
@@ -176,5 +176,3 @@ Contributions are welcome! If you have any questions or want to contribute, you 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 Thank you for using OnCord!
-
-This `README.md` now includes the detailed Oncord documentation, providing clear instructions and examples for setting up a project using `@oncordjs/client`. Adjust the content as needed to fit your specific project.

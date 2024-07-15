@@ -15,6 +15,30 @@ Install the package via npm:
 npm install @oncordjs/client
 ```
 
+## Using the CLI (for TypeScript)
+
+We've simplified bot creation with a single command. Follow these steps to install:
+
+1. Install the CLI globally:
+    ```bash
+    npm install -g @oncordjs/generate
+    ```
+
+2. Create a new project:
+    ```bash
+    create-oncord-project my-project-name
+    ```
+
+This will generate a new directory called `my-project-name` with the necessary files and structure for your Oncord bot.
+
+3. Navigate to your project directory:
+    ```bash
+    cd my-project-name
+    ```
+
+Your project is now set up and ready for development. Follow the steps in the documentation to start building your Discord bot with `@oncordjs/client`.
+
+
 ## Project Structure
 
 The recommended project structure is as follows:
