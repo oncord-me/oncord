@@ -24,7 +24,7 @@ export class Voice {
     public constructor() {
         this.player = createAudioPlayer({
             behaviors: {
-                noSubscriber: NoSubscriberBehavior.Pause,
+                noSubscriber: NoSubscriberBehavior.Play,
             },
         });
 
@@ -41,7 +41,7 @@ export class Voice {
                 if (guildQueue.songs.length === 0) return;
 
                 const stream = await playdl.stream(guildQueue.songs[0], {
-                    quality: 2,
+
                 });
 
                 guildQueue.songs.shift();
@@ -70,22 +70,22 @@ export class Voice {
             throw new Error('Failed to connect to the voice channel.');
         }
     }
-
-    public async play(song: string, channel: VoiceChannel) {
+    /**
+     * Ok, I'm still fixing this.
+     */
+    private async play(song: string, channel: VoiceChannel) {
         if (!song) return;
         const client = channel.client as Gateway;
         const queue = client.queue as Collection<string, Queue>;
         if (!queue) throw new Error("Can't find the Queue Collection.");
         const guildQueue = queue.get(channel.guildId);
-        const stream = await playdl.stream(song, {
-            quality: 2,
-        });
+        const stream = await playdl.stream(song);
         if (!guildQueue) {
             if (!stream) throw new Error("Can't check song stream.");
 
             await this.playUrl(stream.stream, channel, {
                 resources: {
-                    inputType: stream.type,
+                    inputType: stream.type
                 },
             });
             const queueConstruct: Queue = {
@@ -118,7 +118,7 @@ export class Voice {
         if (!this.connection) return;
 
         const connection = this.connection;
-        const subscriber = connection.subscribe(this.player);
+        var subscriber: any;// = connection.subscribe(this.player);
 
         connection
             .on(VoiceConnectionStatus.Disconnected, async () => {
@@ -162,7 +162,7 @@ export class Voice {
 
         resource.volume?.setVolumeLogarithmic(this.volume / 100);
         this.player.play(resource);
-
+        subscriber = await connection.subscribe(this.player);
         return {
             connection,
             resource,
