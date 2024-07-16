@@ -18,7 +18,11 @@
     "oncord",
     "discord",
     "framework",
-    "discord.js"
+    "discord.js",
+    "bot",
+    "interactions",
+    "discordbot",
+    "api"
   ],
   "author": "igorwastaken",
   "license": "ISC",

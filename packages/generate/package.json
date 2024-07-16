@@ -9,8 +9,16 @@
     "build": "tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "oncord",
+    "discordbot",
+    "bot",
+    "discord.js",
+    "api",
+    "interactive",
+    "discord-interactions"
+  ],
+  "author": "igorwastaken",
   "license": "MIT",
   "description": "@oncord/client project generator.",
   "dependencies": {

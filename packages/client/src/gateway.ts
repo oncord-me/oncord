@@ -13,6 +13,7 @@ export class Gateway extends Client {
     public token: string;
     public prefix: string;
     public commands = new Collection<string, CommandType>();
+    public queue = new Collection();
     public commandData: ChatInputApplicationCommandData[] = [];
     public messageCommands = new Collection<string, MessageCommandType>();
     private _commandFolder: string = "";

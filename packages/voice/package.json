@@ -1,0 +1,33 @@
+{
+  "name": "@oncordjs/voice",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "voice",
+    "discord-voice",
+    "discord.js",
+    "discord",
+    "oncord",
+    "voicechannel",
+    "interaction",
+    "api"
+  ],
+  "author": "igorwastaken",
+  "contributors": [
+    "nitcord"
+  ],
+  "license": "MIT",
+  "description": "OnCord Voice extends the capabilities of OnCord by adding robust support for Discord voice channels, making it easier than ever to integrate voice features into your Discord bot.",
+  "devDependencies": {
+    "@discordjs/voice": "^0.17.0",
+    "discord.js": "^14.15.3",
+    "ytdl-core": "^4.11.5"
+  },
+  "dependencies": {
+    "play-dl": "^1.9.7"
+  }
+}
